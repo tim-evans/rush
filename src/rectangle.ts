@@ -48,7 +48,7 @@ export default class Rectangle {
     return this.width * this.height;
   }
 
-  intersects(rect: number): boolean {
+  intersects(rect: number): bool {
     return Rectangle.intersection(this, rect).area > 0;
   }
 
@@ -62,12 +62,10 @@ export default class Rectangle {
 
   translateX(dX: number) {
     this.left = this.left + dX;
-    this.right += dX;
   }
 
   translateY(dY: number) {
     this.top = this.top + dY;
-    this.bottom += dY;
   }
 
   translate(dX: number, dY: number) {

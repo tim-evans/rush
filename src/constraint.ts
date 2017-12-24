@@ -192,20 +192,20 @@ export default class Constraint {
 
   positionBelow(target: Rectangle, popover: Rectangle, pointer: Rectangle, over: Rectangle, positionOver: boolean) {
     let shiftY = over ? -1 * popover.height :  pointer.height;
-    popover.setY(target.bottom + shiftY);
-    pointer.setY(pointer.height * -1);
+    popover.y = target.bottom + shiftY;
+    pointer.y = pointer.height * -1;
   }
 
   positionLeft(target: Rectangle, popover: Rectangle, pointer: Rectangle, over: Rectangle, positionOver: boolean) {
     let shiftX = over ? 0 : popover.width + pointer.width;
-    popover.setX(target.left - shiftX);
-    pointer.setX(popover.width);
+    popover.x = target.left - shiftX;
+    pointer.x = popover.width;
   }
 
   positionRight(target: Rectangle, popover: Rectangle, pointer: Rectangle, over: Rectangle, positionOver: boolean) {
     const shiftX = over ? (-1 * popover.width) : pointer.width;
-    popover.setX(target.right + shiftX);
-    pointer.setX(pointer.width * -1);
+    popover.x = target.right + shiftX;
+    pointer.x = pointer.width * -1;
   }
 
   positionCenter(target: Rectangle, popover: Rectangle, pointer: Rectangle, over: Rectangle, positionOver: boolean) {

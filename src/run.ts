@@ -43,7 +43,7 @@ function run(constraints: Constraint[], targetArea: DOMRect, $popover: HTMLEleme
   }
 }
 
-function scrollParent(element: Element): Element {
+function scrollParent(element: HTMLElement): HTMLElement {
   let position = element.style.position;
   let excludeStaticParent = position === 'absolute';
   let parent = element.parentElement;
