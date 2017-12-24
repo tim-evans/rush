@@ -1,0 +1,42 @@
+{
+  "name": "@tim-evans/rush",
+  "version": "0.5.0",
+  "description": "Pop over primitives",
+  "main": "dist/commonjs/index.js",
+  "module": "dist/modules/index.js",
+  "types": "dist/commonjs/index.d.ts",
+  "scripts": {
+    "prepublish": "npm run build",
+    "build": "rm -rf dist; tsc -p . & tsc -p . --module ESNext --outDir dist/modules/ --target ES2017; exit 0",
+    "test": "./node_modules/jest/bin/jest.js"
+  },
+  "license": "Apache-2.0",
+  "publishConfig": {
+    "access": "public"
+  },
+  "devDependencies": {
+    "@types/jest": "^21.1.2",
+    "jest": "^21.2.1",
+    "lerna": "^2.2.0",
+    "ts-jest": "^21.0.1",
+    "tslint": "^5.7.0",
+    "typescript": "^2.4.2"
+  },
+  "jest": {
+    "mapCoverage": true,
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js"
+    ],
+    "moduleNameMapper": {
+      "@atjson/(.*)": "<rootDir>/packages/$1/src/index.ts"
+    },
+    "transform": {
+      "^.+\\.(ts|tsx)$": "<rootDir>/node_modules/ts-jest/preprocessor.js"
+    },
+    "testMatch": [
+      "**/*-test.(ts|tsx)"
+    ]
+  }
+}
