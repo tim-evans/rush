@@ -1,3 +1,10 @@
+interface DOMRect {
+  x: number,
+  y: number,
+  width: number,
+  height: number
+}
+
 export default class Rectangle {
   static intersection(rectA: Rectangle, rectB: Rectangle): Rectangle {
     // Find the edges

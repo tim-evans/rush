@@ -30,7 +30,7 @@
       "js"
     ],
     "moduleNameMapper": {
-      "@atjson/(.*)": "<rootDir>/packages/$1/src/index.ts"
+      "@tim-evans/rush": "<rootDir>/src/index.ts"
     },
     "transform": {
       "^.+\\.(ts|tsx)$": "<rootDir>/node_modules/ts-jest/preprocessor.js"

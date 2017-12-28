@@ -1,2 +1,4 @@
 import build from './constraint-builder';
-export { build };
+import Rectangle from './rectangle';
+
+export { build, Rectangle };
