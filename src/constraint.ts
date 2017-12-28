@@ -140,19 +140,20 @@ export default class Constraint {
       pointerRect,
       positionOver
     );
+    let valid, pointer;
 
     // The pane should slide in the direction specified by the flow
     if (this.behavior === 'slide') {
       switch (orientation) {
       case 'above':
       case 'below':
-        let { valid, pointer } = slideHorizontally(this.guideline, boundingRect, targetRect, popoverRect, pointerRect, positionOver);
+        { valid, pointer } = slideHorizontally(this.guideline, boundingRect, targetRect, popoverRect, pointerRect, positionOver);
         result.valid = valid;
         result.pointer = pointer;
         break;
       case 'left':
       case 'right':
-          let { valid, pointer } = slideVertically(this.guideline, boundingRect, targetRect, popoverRect, pointerRect, positionOver);
+        { valid, pointer } = slideVertically(this.guideline, boundingRect, targetRect, popoverRect, pointerRect, positionOver);
         result.valid = valid;
         result.pointer = pointer;
         break;
