@@ -28,7 +28,7 @@ export default class Rectangle {
   }
 
   static fromDOMRect(rect: DOMRect): Rectangle {
-    return new Rectangle(rect.x, rect.y, rect.width, rect.height);
+    return new Rectangle(rect.left, rect.top, rect.width, rect.height);
   }
 
   left: number;
@@ -63,7 +63,7 @@ export default class Rectangle {
     return Rectangle.intersection(this, rect).area === rect.area;
   }
 
-  center(): [number, number] {
+  get center(): [number, number] {
     return [this.left + this.width / 2, this.top + this.height / 2];
   }
 
