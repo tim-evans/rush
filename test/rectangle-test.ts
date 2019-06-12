@@ -1,8 +1,8 @@
-import { Rectangle } from "@tim-evans/rush";
+import Rectangle from '../src/rectangle';
 
-describe('Rectangle', function () {
+describe('Rectangle', () => {
   // JSDom returns an empty rect, so test for that :/
-  it('can be built from a DOMRect', function () {
+  it('can be built from a DOMRect', () => {
     let element = document.createElement('div');
 
     let rect = Rectangle.fromDOMRect(element.getBoundingClientRect());
@@ -12,12 +12,12 @@ describe('Rectangle', function () {
     expect(rect.height).toBe(0);
   });
 
-  describe('intersection', function () {
-    describe('overlapping', function () {
+  describe('intersection', () => {
+    describe('overlapping', () => {
       let a = new Rectangle(0, 0, 15, 15);
       let b = new Rectangle(5, 10, 15, 15);
 
-      it('has a rectangle that is the resultant intersection of the two', function () {
+      it('has a rectangle that is the resultant intersection of the two', () => {
         let intersection = Rectangle.intersection(a, b);
         expect(intersection.x).toBe(5);
         expect(intersection.y).toBe(10);
@@ -25,16 +25,16 @@ describe('Rectangle', function () {
         expect(intersection.height).toBe(5);
       });
 
-      it('intersects', function () {
+      it('intersects', () => {
         expect(a.intersects(b)).toBeTruthy();
       });
     });
 
-    describe('non-overlapping', function () {
+    describe('non-overlapping', () => {
       let a = new Rectangle(0, 0, 5, 10);
       let b = new Rectangle(5, 10, 15, 15);
 
-      it('returns an empty rectangle as the intersection', function () {
+      it('returns an empty rectangle as the intersection', () => {
         let intersection = Rectangle.intersection(a, b);
         expect(intersection.x).toBe(0);
         expect(intersection.y).toBe(0);
@@ -42,13 +42,13 @@ describe('Rectangle', function () {
         expect(intersection.height).toBe(0);
       });
 
-      it('does not intersect', function () {
+      it('does not intersect', () => {
         expect(a.intersects(b)).toBeFalsy();
       });
     });
   });
 
-  describe('contains a rectangle if it is completely inside another', function () {
+  describe('contains a rectangle if it is completely inside another', () => {
     let a = new Rectangle(0, 0, 100, 100);
     let b = new Rectangle(5, 10, 20, 20);
 
@@ -56,7 +56,7 @@ describe('Rectangle', function () {
     expect(b.contains(a)).toBeFalsy();
   });
 
-  it('maps x to left', function () {
+  it('maps x to left', () => {
     let rect = new Rectangle(0, 0, 0, 0);
 
     expect(rect.left).toEqual(0);
@@ -69,7 +69,7 @@ describe('Rectangle', function () {
     expect(rect.x).toEqual(200);
   });
 
-  it('maps y to top', function () {
+  it('maps y to top', () => {
     let rect = new Rectangle(0, 0, 0, 0);
 
     expect(rect.top).toEqual(0);
@@ -82,21 +82,21 @@ describe('Rectangle', function () {
     expect(rect.y).toEqual(200);
   });
 
-  it('can be translated horizontally', function () {
+  it('can be translated horizontally', () => {
     let rect = new Rectangle(10, 10, 0, 0);
 
     rect.translateX(10);
     expect(rect.left).toEqual(20);
   });
 
-  it('can be translated vertically', function () {
+  it('can be translated vertically', () => {
     let rect = new Rectangle(10, 10, 0, 0);
 
     rect.translateY(-10);
     expect(rect.top).toEqual(0);
   });
 
-  it('can be translated', function () {
+  it('can be translated', () => {
     let rect = new Rectangle(10, 10, 0, 0);
 
     rect.translate(5, 10);
@@ -104,7 +104,7 @@ describe('Rectangle', function () {
     expect(rect.top).toEqual(20);
   });
 
-  it('has a center', function () {
+  it('has a center', () => {
     let rect = new Rectangle(10, 10, 20, 50);
 
     expect(rect.center).toEqual([20, 35]);
@@ -116,7 +116,7 @@ describe('Rectangle', function () {
     expect(rect.center).toEqual([25, 35]);
   });
 
-  it('has an area', function () {
+  it('has an area', () => {
     let rect = new Rectangle(10, 10, 5, 10);
 
     expect(rect.area).toEqual(50);
@@ -125,7 +125,7 @@ describe('Rectangle', function () {
     expect(rect.area).toEqual(200);
   });
 
-  it('has a bottom side', function () {
+  it('has a bottom side', () => {
     let rect = new Rectangle(10, 10, 5, 10);
 
     expect(rect.bottom).toEqual(20);
@@ -134,7 +134,7 @@ describe('Rectangle', function () {
     expect(rect.bottom).toEqual(30);
   });
 
-  it('has a right side', function () {
+  it('has a right side', () => {
     let rect = new Rectangle(10, 10, 5, 10);
 
     expect(rect.right).toEqual(15);

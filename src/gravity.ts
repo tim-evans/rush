@@ -1,31 +1,31 @@
-import build from './constraint-builder';
+import build from './builder';
 
 export default {
-  nw: build(function () {
-    return this.orientAbove.andSnapTo('left-edge');
+  nw: build(function() {
+    return this.orientAbove.andSnapTo(this.leftEdge);
   }),
-  n: build(function () {
-    return this.orientAbove.andSnapTo('center');
+  n: build(function() {
+    return this.orientAbove.andSnapTo(this.center);
   }),
-  ne: build(function () {
-    return this.orientAbove.andSnapTo('right-edge');
+  ne: build(function() {
+    return this.orientAbove.andSnapTo(this.rightEdge);
   }),
-  e: build(function () {
-    return this.orientRight.andSnapTo('center');
+  e: build(function() {
+    return this.orientRight.andSnapTo(this.center);
   }),
-  se: build(function () {
-    return this.orientBelow.andSnapTo('right-edge');
+  se: build(function() {
+    return this.orientBelow.andSnapTo(this.rightEdge);
   }),
-  s: build(function () {
-    return this.orientBelow.andSnapTo('center');
+  s: build(function() {
+    return this.orientBelow.andSnapTo(this.center);
   }),
-  sw: build(function () {
-    return this.orientBelow.andSnapTo('left-edge');
+  sw: build(function() {
+    return this.orientBelow.andSnapTo(this.leftEdge);
   }),
-  w: build(function () {
-    return this.orientLeft.andSnapTo('center');
+  w: build(function() {
+    return this.orientLeft.andSnapTo(this.center);
   }),
-  none: build(function () {
-    return this.orientCenter.andSnapTo('center');
+  none: build(function() {
+    return this.orientCenter.andSnapTo(this.center);
   })
 };

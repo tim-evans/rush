@@ -1,10 +1,3 @@
-interface DOMRect {
-  x: number,
-  y: number,
-  width: number,
-  height: number
-}
-
 export default class Rectangle {
   static intersection(rectA: Rectangle, rectB: Rectangle): Rectangle {
     // Find the edges
@@ -12,7 +5,8 @@ export default class Rectangle {
     let y = Math.max(rectA.y, rectB.y);
     let right  = Math.min(rectA.right, rectB.right);
     let bottom = Math.min(rectA.bottom, rectB.bottom);
-    let width, height;
+    let width = 0;
+    let height = 0;
 
     if (rectA.right <= rectB.left ||
         rectB.right <= rectA.left ||
@@ -27,7 +21,10 @@ export default class Rectangle {
     return new Rectangle(x, y, width, height);
   }
 
-  static fromDOMRect(rect: DOMRect): Rectangle {
+  static fromDOMRect(rect: DOMRect | ClientRect): Rectangle {
+    if (rect instanceof DOMRect) {
+      return new Rectangle(rect.x, rect.y, rect.width, rect.height);
+    }
     return new Rectangle(rect.left, rect.top, rect.width, rect.height);
   }
 
@@ -55,7 +52,7 @@ export default class Rectangle {
     return this.width * this.height;
   }
 
-  intersects(rect: number): bool {
+  intersects(rect: Rectangle): boolean {
     return Rectangle.intersection(this, rect).area > 0;
   }
 
@@ -80,7 +77,7 @@ export default class Rectangle {
     this.translateY(dY);
   }
 
-  get x() : number {
+  get x(): number {
     return this.left;
   }
 

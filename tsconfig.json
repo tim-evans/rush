@@ -1,23 +1,26 @@
 {
   "compilerOptions": {
-    "target": "ES6",
-    "declaration": true,
-    "module": "commonjs",
-    "removeComments": true,
-    "downlevelIteration": true,
-    "strict": true,
     "alwaysStrict": true,
+    "baseUrl": "./",
+    "declaration": true,
+    "downlevelIteration": true,
+    "experimentalDecorators": true,
+    "inlineSourceMap": true,
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "es2016.array.include",
+      "es6"
+    ],
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitReturns": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "noImplicitReturns": true,
-    "noFallthroughCasesInSwitch": true,
-    "moduleResolution": "node",
-    "baseUrl": "./",
-    "inlineSourceMap": true,
-    "experimentalDecorators": true,
-    "outDir": "./dist/commonjs"
-  },
-  "include": [
-    "src/**/*"
-  ]
+    "removeComments": true,
+    "skipDefaultLibCheck": true,
+    "strict": true,
+    "target": "ES6"
+  }
 }
