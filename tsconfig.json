@@ -1,7 +1,11 @@
 {
+  "include": [
+    "src/**/*"
+  ],
   "compilerOptions": {
     "alwaysStrict": true,
     "baseUrl": "./",
+    "outDir": "./dist/commonjs",
     "declaration": true,
     "downlevelIteration": true,
     "experimentalDecorators": true,

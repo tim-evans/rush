@@ -22,15 +22,15 @@
     "typescript": "^2.9.2"
   },
   "jest": {
-    "mapCoverage": true,
     "moduleFileExtensions": [
-      "ts"
+      "ts",
+      "js"
     ],
     "moduleNameMapper": {
       "@tim-evans/rush": "<rootDir>/src/index.ts"
     },
     "transform": {
-      "^.+\\.(ts|tsx)$": "<rootDir>/node_modules/ts-jest/preprocessor.js"
+      "^.+\\.(ts|tsx)$": "ts-jest"
     },
     "testMatch": [
       "**/*-test.(ts|tsx)"
