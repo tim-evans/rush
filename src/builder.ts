@@ -82,14 +82,12 @@ class Builder {
 }
 
 export default function build(definition: (this: API) => Builder): Constraint[] {
-  let step = definition.call(new API());
+  let step: Builder | null = definition.call(new API());
   let constraints = [];
-  do {
+  while (step) {
     constraints.push(...step.constraints);
-    if (step.next) {
-      step = step.next;
-    }
-  } while (step.next);
+    step = step.next;
+  }
 
   return constraints;
 }

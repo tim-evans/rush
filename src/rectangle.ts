@@ -21,7 +21,10 @@ export default class Rectangle {
     return new Rectangle(x, y, width, height);
   }
 
-  static fromDOMRect(rect: DOMRect | ClientRect): Rectangle {
+  static fromDOMRect(rect: DOMRect | ClientRect | Rectangle): Rectangle {
+    if (rect instanceof Rectangle) {
+      return new Rectangle(rect.left, rect.top, rect.width, rect.height);
+    }
     if (rect instanceof DOMRect) {
       return new Rectangle(rect.x, rect.y, rect.width, rect.height);
     }
@@ -66,15 +69,22 @@ export default class Rectangle {
 
   translateX(dX: number) {
     this.left = this.left + dX;
+    return this;
   }
 
   translateY(dY: number) {
     this.top = this.top + dY;
+    return this;
   }
 
   translate(dX: number, dY: number) {
     this.translateX(dX);
     this.translateY(dY);
+    return this;
+  }
+
+  clone() {
+    return new Rectangle(this.left, this.right, this.width, this.height);
   }
 
   get x(): number {
