@@ -3,9 +3,10 @@ import { Constraint, Rectangle, gravity, solveFor } from '../src';
 // Checks validity for all points inside of the
 // rectangle by shifting a target to all positions
 // inside of the bounding rect.
-function validIn(constraints: Constraint[], rect: Rectangle) {
+function getValidRect(constraints: Constraint[], hasPointer?: boolean) {
   let boundingRect = new Rectangle(0, 0, 100, 100);
   let popoverRect = new Rectangle(0, 0, 4, 4);
+  let pointerRect = hasPointer ? new Rectangle(0, 0, 4, 2) : new Rectangle(0, 0, 0, 0);
 
   let expected = new Rectangle(0, 0, 0, 0);
   let firstX: number | null = null;
@@ -18,7 +19,8 @@ function validIn(constraints: Constraint[], rect: Rectangle) {
         constraints,
         boundingRect,
         targetRect,
-        popoverRect
+        popoverRect,
+        pointerRect
       );
 
       if (solution.valid) {
@@ -39,43 +41,51 @@ function validIn(constraints: Constraint[], rect: Rectangle) {
     }
   }
 
-  expect(expected).toMatchObject(rect);
+  return expected;
 }
 
 describe('gravity', () => {
   test('northwest', () => {
-    validIn(gravity.nw, new Rectangle(0, 4, 96, 95.5));
+    expect(getValidRect(gravity.nw)).toMatchObject(new Rectangle(0, 4, 96, 95.5));
+    expect(getValidRect(gravity.nw, true)).toMatchObject(new Rectangle(5, 6, 94.5, 93.5));
   });
 
   test('north', () => {
-    validIn(gravity.n, new Rectangle(1, 4, 96, 95.5));
+    expect(getValidRect(gravity.n)).toMatchObject(new Rectangle(1, 4, 96, 95.5));
+    expect(getValidRect(gravity.n, true)).toMatchObject(new Rectangle(1, 6, 96, 93.5));
   });
 
   test('northeast', () => {
-    validIn(gravity.ne, new Rectangle(2, 4, 96, 95.5));
+    expect(getValidRect(gravity.ne)).toMatchObject(new Rectangle(2, 4, 96, 95.5));
+    expect(getValidRect(gravity.ne, true)).toMatchObject(new Rectangle(0, 6, 93, 93.5));
   });
 
   test('southwest', () => {
-    validIn(gravity.sw, new Rectangle(0, 0, 96, 94));
+    expect(getValidRect(gravity.sw)).toMatchObject(new Rectangle(0, 0, 96, 94));
+    expect(getValidRect(gravity.sw, true)).toMatchObject(new Rectangle(5, 0, 94.5, 92));
   });
 
   test('south', () => {
-    validIn(gravity.s, new Rectangle(1, 0, 96, 94));
+    expect(getValidRect(gravity.s)).toMatchObject(new Rectangle(1, 0, 96, 94));
+    expect(getValidRect(gravity.s, true)).toMatchObject(new Rectangle(1, 0, 96, 92));
   });
 
   test('southeast', () => {
-    validIn(gravity.se, new Rectangle(2, 0, 96, 94));
+    expect(getValidRect(gravity.se)).toMatchObject(new Rectangle(2, 0, 96, 94));
+    expect(getValidRect(gravity.se, true)).toMatchObject(new Rectangle(0, 0, 93, 92));
   });
 
   test('west', () => {
-    validIn(gravity.w, new Rectangle(4, 1, 95.5, 96));
+    expect(getValidRect(gravity.w)).toMatchObject(new Rectangle(4, 1, 95.5, 96));
+    expect(getValidRect(gravity.w, true)).toMatchObject(new Rectangle(8, 1, 91.5, 96));
   });
 
   test('east', () => {
-    validIn(gravity.e, new Rectangle(0, 1, 94, 96));
+    expect(getValidRect(gravity.e)).toMatchObject(new Rectangle(0, 1, 94, 96));
+    expect(getValidRect(gravity.e, true)).toMatchObject(new Rectangle(0, 1, 90, 96));
   });
 
   test('center', () => {
-    validIn(gravity.none, new Rectangle(1, 1, 96, 96));
+    expect(getValidRect(gravity.none)).toMatchObject(new Rectangle(1, 1, 96, 96));
   });
 });
