@@ -1,0 +1,60 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`gravity default 1`] = `
+Object {
+  "e": Array [
+    SnapConstraint {
+      "constraint": "center",
+      "orientation": "right",
+    },
+  ],
+  "n": Array [
+    SnapConstraint {
+      "constraint": "center",
+      "orientation": "above",
+    },
+  ],
+  "ne": Array [
+    SnapConstraint {
+      "constraint": "rightEdge",
+      "orientation": "above",
+    },
+  ],
+  "none": Array [
+    SnapConstraint {
+      "constraint": "center",
+      "orientation": "center",
+    },
+  ],
+  "nw": Array [
+    SnapConstraint {
+      "constraint": "leftEdge",
+      "orientation": "above",
+    },
+  ],
+  "s": Array [
+    SnapConstraint {
+      "constraint": "center",
+      "orientation": "below",
+    },
+  ],
+  "se": Array [
+    SnapConstraint {
+      "constraint": "rightEdge",
+      "orientation": "below",
+    },
+  ],
+  "sw": Array [
+    SnapConstraint {
+      "constraint": "leftEdge",
+      "orientation": "below",
+    },
+  ],
+  "w": Array [
+    SnapConstraint {
+      "constraint": "center",
+      "orientation": "left",
+    },
+  ],
+}
+`;
