@@ -25,7 +25,7 @@ export default class Rectangle {
     if (rect instanceof Rectangle) {
       return new Rectangle(rect.left, rect.top, rect.width, rect.height);
     }
-    if (rect instanceof DOMRect) {
+    if ((window as any).DOMRect && rect instanceof DOMRect) {
       return new Rectangle(rect.x, rect.y, rect.width, rect.height);
     }
     return new Rectangle(rect.left, rect.top, rect.width, rect.height);
