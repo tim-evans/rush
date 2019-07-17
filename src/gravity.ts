@@ -1,28 +1,28 @@
 import build from './builder';
 
 export default {
-  nw: build(function() {
+  northWest: build(function() {
     return this.orientAbove.andSnapTo(this.leftEdge);
   }),
-  n: build(function() {
+  north: build(function() {
     return this.orientAbove.andSnapTo(this.center);
   }),
-  ne: build(function() {
+  northEast: build(function() {
     return this.orientAbove.andSnapTo(this.rightEdge);
   }),
-  e: build(function() {
+  east: build(function() {
     return this.orientRight.andSnapTo(this.center);
   }),
-  se: build(function() {
+  southEast: build(function() {
     return this.orientBelow.andSnapTo(this.rightEdge);
   }),
-  s: build(function() {
+  south: build(function() {
     return this.orientBelow.andSnapTo(this.center);
   }),
-  sw: build(function() {
+  southWest: build(function() {
     return this.orientBelow.andSnapTo(this.leftEdge);
   }),
-  w: build(function() {
+  west: build(function() {
     return this.orientLeft.andSnapTo(this.center);
   }),
   none: build(function() {
