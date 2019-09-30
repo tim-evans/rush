@@ -15,20 +15,17 @@
     "access": "public"
   },
   "devDependencies": {
-    "@types/jest": "^24.0.13",
-    "jest": "^24.8.0",
-    "ts-jest": "^24.0.2",
-    "tslint": "^5.17.0",
-    "typescript": "^2.9.2"
+    "@types/jest": "^24.0.18",
+    "jest": "^24.9.0",
+    "ts-jest": "^24.1.0",
+    "tslint": "^5.20.0",
+    "typescript": "^3.6.3"
   },
   "jest": {
     "moduleFileExtensions": [
       "ts",
       "js"
     ],
-    "moduleNameMapper": {
-      "@tim-evans/rush": "<rootDir>/src/index.ts"
-    },
     "transform": {
       "^.+\\.(ts|tsx)$": "ts-jest"
     },
