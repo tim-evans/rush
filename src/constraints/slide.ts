@@ -1,22 +1,23 @@
-import { Edge, Orientation } from '../builder';
-import Constraint from '../constraint';
-import Rectangle from '../rectangle';
+import { Edge, Orientation } from "../builder";
+import Constraint from "../constraint";
+import Rectangle from "../rectangle";
 
 function slideHorizontally(
-  guidelines: Array<'leftEdge' | 'center' | 'rightEdge'>,
+  guidelines: Array<"leftEdge" | "center" | "rightEdge">,
   boundary: Rectangle,
   target: Rectangle,
   popover: Rectangle,
   pointer: Rectangle
 ) {
   let edges = {
-    leftEdge:  Math.min(target.width / 2 - (pointer.width * 1.5), 0),
-    center:    (target.width / 2 - popover.width / 2),
+    leftEdge: Math.min(target.width / 2 - pointer.width * 1.5, 0),
+    center: target.width / 2 - popover.width / 2,
     rightEdge: target.width - popover.width
   };
 
-  let range = guidelines.map(guideline => edges[guideline])
-                        .sort((a, b) => a - b);
+  let range = guidelines
+    .map(guideline => edges[guideline])
+    .sort((a, b) => a - b);
 
   let left = target.x + range[0];
   let right = left + popover.width;
@@ -43,14 +44,15 @@ function slideHorizontally(
   let edge;
 
   if (dX < oneThird) {
-    pointer.x = dX + Math.min(pointer.width, target.width / 2 - pointer.width * 1.5);
-    edge = 'leftEdge';
+    pointer.x =
+      dX + Math.min(pointer.width, target.width / 2 - pointer.width * 1.5);
+    edge = "leftEdge";
   } else if (dX < oneThird * 2) {
     pointer.x = dX + target.width / 2 - pointer.width / 2;
-    edge = 'center';
+    edge = "center";
   } else {
     pointer.x = dX + target.width - pointer.width * 1.5;
-    edge = 'rightEdge';
+    edge = "rightEdge";
   }
 
   return {
@@ -60,19 +62,20 @@ function slideHorizontally(
 }
 
 function slideVertically(
-  guidelines: Array<'topEdge' | 'center' | 'bottomEdge'>,
+  guidelines: Array<"topEdge" | "center" | "bottomEdge">,
   boundary: Rectangle,
   target: Rectangle,
   popover: Rectangle,
   pointer: Rectangle
 ) {
   let edges = {
-    topEdge:    Math.min(target.height / 2 - (pointer.height * 1.5), 0),
-    center:     (target.height / 2 - popover.height / 2),
+    topEdge: Math.min(target.height / 2 - pointer.height * 1.5, 0),
+    center: target.height / 2 - popover.height / 2,
     bottomEdge: target.height - popover.height
   };
-  let range = guidelines.map(guideline => edges[guideline])
-                        .sort((a, b) => a - b);
+  let range = guidelines
+    .map(guideline => edges[guideline])
+    .sort((a, b) => a - b);
 
   let top = target.y + range[0];
   let bottom = top + popover.height;
@@ -99,14 +102,17 @@ function slideVertically(
   let edge;
 
   if (dY < oneThird) {
-    pointer.y = dY + pointer.height + Math.min(target.height / 2 - (pointer.height * 1.5), 0);
-    edge = 'topEdge';
+    pointer.y =
+      dY +
+      pointer.height +
+      Math.min(target.height / 2 - pointer.height * 1.5, 0);
+    edge = "topEdge";
   } else if (dY < oneThird * 2) {
     pointer.y = dY + target.height / 2 - pointer.height / 2;
-    edge = 'center';
+    edge = "center";
   } else {
-    pointer.y = dY - Math.min(target.height + (pointer.height * 1.5), 0);
-    edge = 'bottomEdge';
+    pointer.y = dY - Math.min(target.height + pointer.height * 1.5, 0);
+    edge = "bottomEdge";
   }
 
   return {
@@ -120,10 +126,7 @@ export default class SlideConstraint extends Constraint {
 
   constraints: Edge[];
 
-  constructor(params: {
-    orientation: Orientation;
-    constraints: Edge[];
-  }) {
+  constructor(params: { orientation: Orientation; constraints: Edge[] }) {
     super();
     this.orientation = params.orientation;
     this.constraints = params.constraints;
@@ -140,50 +143,50 @@ export default class SlideConstraint extends Constraint {
 
     // Orient the pane
     switch (orientation) {
-      case 'above': {
+      case "above": {
         this.positionAbove(targetRect, popoverRect, pointerRect, positionOver);
         break;
       }
-      case 'below': {
+      case "below": {
         this.positionBelow(targetRect, popoverRect, pointerRect, positionOver);
         break;
       }
-      case 'left': {
+      case "left": {
         this.positionLeft(targetRect, popoverRect, pointerRect, positionOver);
         break;
       }
-      case 'right': {
+      case "right": {
         this.positionRight(targetRect, popoverRect, pointerRect, positionOver);
         break;
       }
     }
 
     switch (orientation) {
-      case 'above':
-      case 'below':
+      case "above":
+      case "below":
         return {
           orientation,
           ...slideHorizontally(
-            this.constraints as Array<'leftEdge' | 'center' | 'rightEdge'>,
+            this.constraints as Array<"leftEdge" | "center" | "rightEdge">,
             boundingRect,
             targetRect,
             popoverRect,
             pointerRect
           )
         };
-      case 'left':
-      case 'right':
+      case "left":
+      case "right":
         return {
           orientation,
           ...slideVertically(
-            this.constraints as Array<'topEdge' | 'center' | 'bottomEdge'>,
+            this.constraints as Array<"topEdge" | "center" | "bottomEdge">,
             boundingRect,
             targetRect,
             popoverRect,
             pointerRect
           )
         };
-      case 'center':
+      case "center":
         return {
           valid: false,
           edge: this.constraints[0],

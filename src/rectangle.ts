@@ -3,18 +3,20 @@ export default class Rectangle {
     // Find the edges
     let x = Math.max(rectA.x, rectB.x);
     let y = Math.max(rectA.y, rectB.y);
-    let right  = Math.min(rectA.right, rectB.right);
+    let right = Math.min(rectA.right, rectB.right);
     let bottom = Math.min(rectA.bottom, rectB.bottom);
     let width = 0;
     let height = 0;
 
-    if (rectA.right <= rectB.left ||
-        rectB.right <= rectA.left ||
-        rectA.bottom <= rectB.top ||
-        rectB.bottom <= rectA.top) {
+    if (
+      rectA.right <= rectB.left ||
+      rectB.right <= rectA.left ||
+      rectA.bottom <= rectB.top ||
+      rectB.bottom <= rectA.top
+    ) {
       x = y = width = height = 0;
     } else {
-      width  = Math.max(0, right - x);
+      width = Math.max(0, right - x);
       height = Math.max(0, bottom - y);
     }
 

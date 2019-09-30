@@ -1,16 +1,21 @@
-import Constraint from './constraint';
-import SlideConstraint from './constraints/slide';
-import SnapConstraint from './constraints/snap';
+import Constraint from "./constraint";
+import SlideConstraint from "./constraints/slide";
+import SnapConstraint from "./constraints/snap";
 
-export type Orientation = 'above' | 'below' | 'left' | 'right' | 'center';
-export type Edge = 'leftEdge' | 'rightEdge' | 'topEdge' | 'bottomEdge' | 'center';
+export type Orientation = "above" | "below" | "left" | "right" | "center";
+export type Edge =
+  | "leftEdge"
+  | "rightEdge"
+  | "topEdge"
+  | "bottomEdge"
+  | "center";
 
 class API {
-  readonly topEdge = 'topEdge';
-  readonly bottomEdge = 'bottomEdge';
-  readonly leftEdge = 'leftEdge';
-  readonly rightEdge = 'rightEdge';
-  readonly center = 'center';
+  readonly topEdge = "topEdge";
+  readonly bottomEdge = "bottomEdge";
+  readonly leftEdge = "leftEdge";
+  readonly rightEdge = "rightEdge";
+  readonly center = "center";
   orientAbove: Builder;
   orientBelow: Builder;
   orientRight: Builder;
@@ -18,16 +23,15 @@ class API {
   orientCenter: Builder;
 
   constructor() {
-    this.orientAbove = new Builder('above');
-    this.orientBelow = new Builder('below');
-    this.orientRight = new Builder('right');
-    this.orientLeft = new Builder('left');
-    this.orientCenter = new Builder('center');
+    this.orientAbove = new Builder("above");
+    this.orientBelow = new Builder("below");
+    this.orientRight = new Builder("right");
+    this.orientLeft = new Builder("left");
+    this.orientCenter = new Builder("center");
   }
 }
 
 class Builder {
-
   orientation: Orientation;
 
   constraints: Constraint[];
@@ -43,12 +47,14 @@ class Builder {
   andSnapTo(...edges: Edge[]) {
     let orientation = this.orientation;
 
-    this.constraints.push(...edges.map(edge => {
-      return new SnapConstraint({
-        orientation,
-        constraint: edge
-      });
-    }));
+    this.constraints.push(
+      ...edges.map(edge => {
+        return new SnapConstraint({
+          orientation,
+          constraint: edge
+        });
+      })
+    );
 
     return this;
   }
@@ -56,10 +62,12 @@ class Builder {
   andSlideBetween(...edges: Edge[]) {
     // Always unshift slide constraints,
     // since they should be handled first
-    this.constraints.unshift(new SlideConstraint({
-      orientation: this.orientation,
-      constraints: edges
-    }));
+    this.constraints.unshift(
+      new SlideConstraint({
+        orientation: this.orientation,
+        constraints: edges
+      })
+    );
 
     return this;
   }
@@ -81,7 +89,9 @@ class Builder {
   }
 }
 
-export default function build(definition: (this: API) => Builder): Constraint[] {
+export default function build(
+  definition: (this: API) => Builder
+): Constraint[] {
   let step: Builder | null = definition.call(new API());
   let constraints = [];
   while (step) {

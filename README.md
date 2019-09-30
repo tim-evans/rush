@@ -11,7 +11,7 @@ import { Constraint, solveFor } from 'rush';
 
 export const ToolTip: FC<{
   constraints: Constraint[],
-  for: 
+  for:
 }> = props => {
   let [style, setStyle] = useState({});
   let [rect, setRect] = useState<DOMRect | null>(null);
@@ -25,7 +25,7 @@ export const ToolTip: FC<{
       }
     };
     document.addEventListener('selectionchange', change);
-  
+
     return () => {
       document.removeEventListener('selectionchange', change);
     };

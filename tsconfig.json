@@ -1,7 +1,5 @@
 {
-  "include": [
-    "src/**/*"
-  ],
+  "include": ["src/**/*"],
   "compilerOptions": {
     "alwaysStrict": true,
     "baseUrl": "./",
@@ -10,12 +8,7 @@
     "downlevelIteration": true,
     "experimentalDecorators": true,
     "inlineSourceMap": true,
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "es2016.array.include",
-      "es6"
-    ],
+    "lib": ["dom", "dom.iterable", "es2016.array.include", "es6"],
     "module": "commonjs",
     "moduleResolution": "node",
     "noFallthroughCasesInSwitch": true,

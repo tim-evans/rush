@@ -1,9 +1,9 @@
-import Rectangle from '../src/rectangle';
+import Rectangle from "../src/rectangle";
 
-describe('Rectangle', () => {
+describe("Rectangle", () => {
   // JSDom returns an empty rect, so test for that :/
-  test('building from a DOMRect', () => {
-    let element = document.createElement('div');
+  test("building from a DOMRect", () => {
+    let element = document.createElement("div");
 
     let rect = Rectangle.fromDOMRect(element.getBoundingClientRect());
     expect(rect.top).toBe(0);
@@ -12,7 +12,7 @@ describe('Rectangle', () => {
     expect(rect.height).toBe(0);
   });
 
-  test('building from a Rectangle', () => {
+  test("building from a Rectangle", () => {
     let rect = Rectangle.fromDOMRect(new Rectangle(1, 2, 3, 4));
     expect(rect.top).toBe(2);
     expect(rect.left).toBe(1);
@@ -20,7 +20,7 @@ describe('Rectangle', () => {
     expect(rect.height).toBe(4);
   });
 
-  test('cloning returns a copy of the Rectangle', () => {
+  test("cloning returns a copy of the Rectangle", () => {
     let rect = new Rectangle(1, 2, 3, 4);
     let clone = rect.clone();
     expect(rect).not.toBe(clone);
@@ -30,12 +30,12 @@ describe('Rectangle', () => {
     expect(clone.left).toBe(1);
   });
 
-  describe('intersection', () => {
-    describe('overlapping', () => {
+  describe("intersection", () => {
+    describe("overlapping", () => {
       let a = new Rectangle(0, 0, 15, 15);
       let b = new Rectangle(5, 10, 15, 15);
 
-      test('has a rectangle that is the resultant intersection of the two', () => {
+      test("has a rectangle that is the resultant intersection of the two", () => {
         let intersection = Rectangle.intersection(a, b);
         expect(intersection.x).toBe(5);
         expect(intersection.y).toBe(10);
@@ -43,16 +43,16 @@ describe('Rectangle', () => {
         expect(intersection.height).toBe(5);
       });
 
-      test('intersects', () => {
+      test("intersects", () => {
         expect(a.intersects(b)).toBeTruthy();
       });
     });
 
-    describe('non-overlapping', () => {
+    describe("non-overlapping", () => {
       let a = new Rectangle(0, 0, 5, 10);
       let b = new Rectangle(5, 10, 15, 15);
 
-      test('an empty rectangle as the intersection', () => {
+      test("an empty rectangle as the intersection", () => {
         let intersection = Rectangle.intersection(a, b);
         expect(intersection.x).toBe(0);
         expect(intersection.y).toBe(0);
@@ -60,13 +60,13 @@ describe('Rectangle', () => {
         expect(intersection.height).toBe(0);
       });
 
-      test('does not intersect', () => {
+      test("does not intersect", () => {
         expect(a.intersects(b)).toBeFalsy();
       });
     });
   });
 
-  describe('contains a rectangle if it is completely inside another', () => {
+  describe("contains a rectangle if it is completely inside another", () => {
     let a = new Rectangle(0, 0, 100, 100);
     let b = new Rectangle(5, 10, 20, 20);
 
@@ -74,7 +74,7 @@ describe('Rectangle', () => {
     expect(b.contains(a)).toBeFalsy();
   });
 
-  test('x <=> left', () => {
+  test("x <=> left", () => {
     let rect = new Rectangle(0, 0, 0, 0);
 
     expect(rect.left).toEqual(0);
@@ -87,7 +87,7 @@ describe('Rectangle', () => {
     expect(rect.x).toEqual(200);
   });
 
-  test('y <=> top', () => {
+  test("y <=> top", () => {
     let rect = new Rectangle(0, 0, 0, 0);
 
     expect(rect.top).toEqual(0);
@@ -100,21 +100,21 @@ describe('Rectangle', () => {
     expect(rect.y).toEqual(200);
   });
 
-  test('horizontally translate', () => {
+  test("horizontally translate", () => {
     let rect = new Rectangle(10, 10, 0, 0);
 
     rect.translateX(10);
     expect(rect.left).toEqual(20);
   });
 
-  test('vertically translate', () => {
+  test("vertically translate", () => {
     let rect = new Rectangle(10, 10, 0, 0);
 
     rect.translateY(-10);
     expect(rect.top).toEqual(0);
   });
 
-  test('translate', () => {
+  test("translate", () => {
     let rect = new Rectangle(10, 10, 0, 0);
 
     rect.translate(5, 10);
@@ -122,7 +122,7 @@ describe('Rectangle', () => {
     expect(rect.top).toEqual(20);
   });
 
-  test('center', () => {
+  test("center", () => {
     let rect = new Rectangle(10, 10, 20, 50);
 
     expect(rect.center).toEqual([20, 35]);
@@ -134,7 +134,7 @@ describe('Rectangle', () => {
     expect(rect.center).toEqual([25, 35]);
   });
 
-  test('area', () => {
+  test("area", () => {
     let rect = new Rectangle(10, 10, 5, 10);
 
     expect(rect.area).toEqual(50);
@@ -143,7 +143,7 @@ describe('Rectangle', () => {
     expect(rect.area).toEqual(200);
   });
 
-  test('bottom side', () => {
+  test("bottom side", () => {
     let rect = new Rectangle(10, 10, 5, 10);
 
     expect(rect.bottom).toEqual(20);
@@ -152,7 +152,7 @@ describe('Rectangle', () => {
     expect(rect.bottom).toEqual(30);
   });
 
-  test('right side', () => {
+  test("right side", () => {
     let rect = new Rectangle(10, 10, 5, 10);
 
     expect(rect.right).toEqual(15);
