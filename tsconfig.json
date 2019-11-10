@@ -3,7 +3,7 @@
   "include": ["src/**/*"],
   "compilerOptions": {
     "alwaysStrict": true,
-    "baseUrl": "./",
+    "baseUrl": "./src",
     "outDir": "./dist/commonjs",
     "composite": true,
     "declaration": true,
@@ -19,6 +19,7 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "removeComments": true,
+    "rootDir": "./src",
     "skipLibCheck": true,
     "strict": true,
     "target": "ES6"
