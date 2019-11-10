@@ -1,6 +1,6 @@
 {
-  "name": "@tim-evans/rush",
-  "version": "0.6.1",
+  "name": "@tce/rush",
+  "version": "0.6.2",
   "description": "Pop over primitives",
   "main": "dist/commonjs/index.js",
   "module": "dist/modules/index.js",
