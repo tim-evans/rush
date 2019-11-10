@@ -7,7 +7,10 @@
   "types": "dist/commonjs/index.d.ts",
   "scripts": {
     "prepublish": "npm run build",
-    "build": "rm -rf dist; tsc -p . & tsc -p . --module ESNext --outDir dist/modules/ --target ES2017; exit 0",
+    "lint": "eslint **/*.ts **/*.ts",
+    "lint-fix": "eslint **/*.ts **/*.ts --fix",
+    "clean": "tsc -b . --clean && tsc -b ./tsconfig.modules.json --clean",
+    "build": "tsc -b . && tsc -b ./tsconfig.modules.json",
     "test": "./node_modules/jest/bin/jest.js"
   },
   "license": "Apache-2.0",
@@ -15,11 +18,17 @@
     "access": "public"
   },
   "devDependencies": {
-    "@types/jest": "^24.0.18",
+    "@types/jest": "^24.0.22",
+    "@typescript-eslint/eslint-plugin": "^2.6.1",
+    "@typescript-eslint/parser": "^2.6.1",
+    "eslint": "^6.6.0",
+    "eslint-config-prettier": "^6.5.0",
+    "eslint-plugin-jest": "^23.0.2",
+    "eslint-plugin-prettier": "^3.1.1",
     "jest": "^24.9.0",
+    "prettier": "^1.19.1",
     "ts-jest": "^24.1.0",
-    "tslint": "^5.20.0",
-    "typescript": "^3.6.3"
+    "typescript": "^3.7.2"
   },
   "jest": {
     "moduleFileExtensions": [

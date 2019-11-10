@@ -1,10 +1,13 @@
 {
+  "compileOnSave": true,
   "include": ["src/**/*"],
   "compilerOptions": {
     "alwaysStrict": true,
     "baseUrl": "./",
     "outDir": "./dist/commonjs",
+    "composite": true,
     "declaration": true,
+    "declarationMap": true,
     "downlevelIteration": true,
     "experimentalDecorators": true,
     "inlineSourceMap": true,
@@ -16,7 +19,7 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "removeComments": true,
-    "skipDefaultLibCheck": true,
+    "skipLibCheck": true,
     "strict": true,
     "target": "ES6"
   }
