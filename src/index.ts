@@ -16,7 +16,7 @@ export function scrollParent(element: HTMLElement): Element | HTMLElement {
       continue;
     }
 
-    let { overflow, overflowX, overflowY } = parent.style;
+    let { overflow, overflowX, overflowY } = window.getComputedStyle(parent);
     if (/(auto|scroll)/.test((overflow || "") + overflowX + overflowY)) {
       break;
     }
